@@ -8,14 +8,18 @@
 环境变量 > config.yaml > 代码默认值
 ```
 
+表格中的“仓库样例”仅记录 [`example.config.yaml`](../example.config.yaml) 显式设置的值。“未设置”表示样例未包含该字段，加载时沿用代码默认值，环境变量仍可覆盖。
+
 ## Server
 
 | 配置项 | 仓库样例 | 代码默认 | 说明 |
 | --- | --- | --- | --- |
+| `server.host` | `127.0.0.1` | `127.0.0.1` | 默认仅监听本机 |
+| `server.accounts_dir` | `accounts` | `accounts` | 本机账号文件目录 |
 | `server.port` | `8081` | `8081` | 监听端口 |
 | `server.token_file` | `token.txt` | `token.txt` | 单账号回退文件 |
 | `server.api_key` | 空 | 自动生成 | `/v1/messages` 鉴权 |
-| `server.log_file` | `server.stderr.log` | 空（stderr） | `log.Printf` 全部追加到该文件 |
+| `server.log_file` | 未设置 | 空（stderr） | `log.Printf` 全部追加到该文件 |
 | `server.debug_logging` | `false` | `false` | 高频调试日志 |
 | `server.api_log_input` | `false` | `false` | 记录入站 `/v1/messages` 请求体 |
 | `server.api_log_output` | `false` | `false` | 记录返回给 API 客户端的响应 |
@@ -27,25 +31,28 @@
 
 | 配置项 | 仓库样例 | 代码默认 | 说明 |
 | --- | --- | --- | --- |
-| `proxy.notion_api_base` | `https://www.notion.so/api/v3` | 同左 | Notion API 入口 |
-| `proxy.client_version` | `23.13.20260313.1423` | 同左 | `x-notion-client-version` 请求头 |
-| `proxy.default_model` | `opus-4.6` | `opus-4.6` | 请求未传 `model` 时的回退 |
-| `proxy.disable_notion_prompt` | `true` | `false` | 关闭 Notion 内置 ~33k 系统提示，节省输入 token |
-| `proxy.enable_web_search` | `true` | `true` | 联网搜索全局开关（可被请求头覆盖） |
-| `proxy.enable_workspace_search` | `false` | `false` | 工作区搜索全局开关（可被请求头覆盖） |
+| `proxy.agent_thread` | `true` | `false` | 启用 Personal Agent 协议 |
+| `proxy.agent_thread_resume` | `true` | `true`（未设置时启用） | 同一客户端会话复用 Notion 线程 |
+| `proxy.notion_api_base` | `https://app.notion.com/api/v3` | `https://www.notion.so/api/v3` | Notion API 入口 |
+| `proxy.client_version` | 未设置 | `23.13.20260313.1423` | `x-notion-client-version` 请求头 |
+| `proxy.default_model` | `auto` | `opus-4.6` | 请求未传 `model` 时的回退 |
+| `proxy.disable_notion_prompt` | 未设置 | `false` | 关闭 Notion 内置 ~33k 系统提示，节省输入 token |
+| `proxy.enable_web_search` | 未设置 | `true` | 联网搜索全局开关（可被请求头覆盖） |
+| `proxy.enable_workspace_search` | 未设置 | `false` | 工作区搜索全局开关（可被请求头覆盖） |
+| `proxy.notion_proxy` | 空字符串 | 空字符串 | Notion 上游代理地址，空值表示直连 |
 | `proxy.ask_mode_default` | 未设置 | `false` | 为 `true` 时所有对话默认走 `useReadOnlyMode=true`（即 Notion 前端的 “Ask” 开关）；请求级 `-ask` 后缀仍可覆盖 |
 
 ## Timeouts / Refresh
 
 | 配置项 | 仓库样例 | 代码默认 | 说明 |
 | --- | --- | --- | --- |
-| `timeouts.inference_timeout` | `600` | `600` | 普通推理超时（秒） |
+| `timeouts.inference_timeout` | 未设置 | `600` | 普通推理超时（秒） |
 | `timeouts.research_timeout` | 未设置 | `360` | 研究模式超时（秒），作用于 `researcher` / `fast-researcher` |
-| `timeouts.api_timeout` | `30` | `30` | 配额 / 模型 REST 超时（秒） |
-| `timeouts.tls_dial_timeout` | `30` | `30` | TLS 拨号超时（秒） |
-| `refresh.interval_minutes` | `30` | `30` | 后台刷新间隔（分钟） |
-| `refresh.quota_recheck_minutes` | `30` | `30` | 已耗尽账号的重新检查间隔 |
-| `refresh.concurrency` | `10` | `10` | 后台刷新并发数 |
+| `timeouts.api_timeout` | 未设置 | `30` | 配额 / 模型 REST 超时（秒） |
+| `timeouts.tls_dial_timeout` | 未设置 | `30` | TLS 拨号超时（秒） |
+| `refresh.interval_minutes` | 未设置 | `30` | 后台刷新间隔（分钟） |
+| `refresh.quota_recheck_minutes` | 未设置 | `30` | 已耗尽账号的重新检查间隔 |
+| `refresh.concurrency` | 未设置 | `10` | 后台刷新并发数 |
 | `refresh.live_check_seconds` | 未设置 | `5` | 同一账号请求级实时额度校验的最小间隔；`0` = 每次请求都查 |
 
 ## 环境变量
@@ -53,7 +60,8 @@
 `server.*` / `proxy.*` / `timeouts.*` / `refresh.*` / `browser.*` 都有对应大写下划线命名的环境变量。常用：
 
 ```bash
-export PORT=3000
+export HOST=127.0.0.1
+export PORT=8081
 export API_KEY=sk-your-api-key
 export ENABLE_WEB_SEARCH=true
 export ENABLE_WORKSPACE_SEARCH=false
