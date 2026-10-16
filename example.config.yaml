@@ -1,0 +1,19 @@
+# Copy to config.yaml. Never commit real credentials.
+server:
+  host: 127.0.0.1
+  port: "8081"
+  accounts_dir: accounts
+  token_file: token.txt
+  api_key: "" # Generated locally on first startup.
+  debug_logging: false
+  api_log_input: false
+  api_log_output: false
+  notion_log_request: false
+  notion_log_response: false
+  dump_api_input: false
+proxy:
+  agent_thread: true
+  agent_thread_resume: true
+  notion_api_base: https://app.notion.com/api/v3
+  default_model: auto
+  notion_proxy: ""
