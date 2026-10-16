@@ -1,0 +1,73 @@
+# Binary
+*.exe
+*.exe~
+/notion-manager
+/notion-proxy
+/notion-manager-register
+/notion2api
+/register
+
+# Secrets
+config.yaml
+token.txt
+accounts/*.json
+accounts/.register_inputs/
+accounts/.register_history.json
+accounts/.token_stats.json
+accounts/.agent_threads.state*
+accounts/.cloud_agent.state*
+accounts/.cloud-agent-*
+.playwright-cli/
+.playwright-mcp/
+!accounts/example.json
+
+# Bulk register / login flow debug artefacts
+_*.log
+_*.txt
+_*.json
+_*.json.*
+_hazel_cookies.json*
+consent_traffic.json
+logs/
+
+# Debug/temp
+debug_response.jsonl
+proxy_stderr.log
+server.log
+server.stderr.log
+test_*.json
+api_probes/
+claude_code_system_dump.*
+claude_code_tools_dump.*
+
+# Frontend build artifacts
+web/dist/
+web/node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+__pycache__/
+*.pyc
+
+# Local credentials and captures (public distribution)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.har
+*.log
+/accounts/
+*.tsbuildinfo
+/private-captures/
+/dist/

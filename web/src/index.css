@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #191919;
+  --color-bg-secondary: #202020;
+  --color-bg-card: #252525;
+  --color-bg-card-hover: #2f2f2f;
+  --color-bg-exhausted: #2a1f1f;
+  --color-bg-input: #2f2f2f;
+  --color-text-primary: #ebebea;
+  --color-text-secondary: #9b9a97;
+  --color-text-muted: #5a5a5a;
+  --color-notion-blue: #2383e2;
+  --color-notion-blue-hover: #1a73d4;
+  --color-ok: #4dab9a;
+  --color-warn: #d9a651;
+  --color-err: #eb5757;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-research: #b39ddb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

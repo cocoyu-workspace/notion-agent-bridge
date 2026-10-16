@@ -1,0 +1,155 @@
+{
+ "_comment": "Claude Code 2.1.296 auto-compact summarisation request (CLAUDE_CODE_AUTO_COMPACT_WINDOW small), structure only: roles, block layout, tool round-trips and the position of the appended instruction block are as captured; texts de-identified; $ATTRIBUTION and $INSTRUCTION are replaced by the tests. The last assistant reply of the 5th turn is NOT in the request: the pending user message of that turn carries the instruction as a second text block.",
+ "messages": [
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "text",
+     "text": "$ATTRIBUTION"
+    },
+    {
+     "type": "text",
+     "text": "Remember this marker for later: MARK-19400-AC. Reply only: noted"
+    }
+   ]
+  },
+  {
+   "role": "system",
+   "content": "# Environment\nstand-in project context"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "noted",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": "Use Read on calc.go and tell me the function name only."
+  },
+  {
+   "role": "system",
+   "content": "<total_tokens>15000000 tokens left</total_tokens>"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "type": "tool_use",
+     "id": "call_0_a2aadc14",
+     "name": "Read",
+     "input": {
+      "file_path": "/work/calc.go"
+     }
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "tool_use_id": "call_0_a2aadc14",
+     "type": "tool_result",
+     "content": "1\tpackage fx\n2\t\n3\t// Add returns a+b.\n4\tfunc Add(a, b int) int {\n5\t\treturn a - b\n6\t}\n7\t"
+    }
+   ]
+  },
+  {
+   "role": "system",
+   "content": "<total_tokens>14999940 tokens left</total_tokens>"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "Add",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": "Use Bash to run: ls ; reply with the file count only."
+  },
+  {
+   "role": "system",
+   "content": "<total_tokens>15000000 tokens left</total_tokens>"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "type": "tool_use",
+     "id": "call_0_464779a6",
+     "name": "Bash",
+     "input": {
+      "command": "ls",
+      "description": "List files in current directory"
+     }
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "tool_use_id": "call_0_464779a6",
+     "type": "tool_result",
+     "content": "calc.go\ncalc_test.go\ngo.mod\nnote_k9.txt",
+     "is_error": false
+    }
+   ]
+  },
+  {
+   "role": "system",
+   "content": "<total_tokens>14999932 tokens left</total_tokens>"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "4",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": "What is 17*23? Reply with the number only."
+  },
+  {
+   "role": "system",
+   "content": "<total_tokens>15000000 tokens left</total_tokens>"
+  },
+  {
+   "role": "assistant",
+   "content": [
+    {
+     "text": "391",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "role": "user",
+   "content": [
+    {
+     "type": "text",
+     "text": "Name one primary colour. One word.\n"
+    },
+    {
+     "type": "text",
+     "text": "$INSTRUCTION"
+    }
+   ]
+  },
+  {
+   "role": "system",
+   "content": "<total_tokens>15000000 tokens left</total_tokens>"
+  }
+ ]
+}
